@@ -1,22 +1,21 @@
+SET SESSION FOREIGN_KEY_CHECKS=0;
 
--- SET SESSION FOREIGN_KEY_CHECKS=0;
+CREATE TABLE usuario (
 
--- create usuario (
+    id int PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    nome varchar(100)
 
---     id int primary key auto_increment not null,
---     nome varchar(100) not null,
---     login varchar(100) not null,
---     password varchar(10) not null,
+);
 
--- )
-
--- create table tarefa (
+CREATE TABLE tarefa (
         
---         id int not null primary key auto_increment,
---         titulo varchar(100) not null,
---         descricao text,
---         status_tarefa int,
---         usuario_id int not null reference usuario (id),
---         prioridade int
+        id int PRIMARY KEY AUTO_INCREMENT NOT NULL,
+        titulo varchar(100),
+        descricao text,
+        status_tarefa int,
+        usuario_id int REFERENCES usuario (id), -- Valor está vindo nulo
+        prioridade int
+    );
 
---         );
+INSERT INTO usuario (nome) VALUES ('Fulana');
+INSERT INTO tarefa (titulo, descricao, status_tarefa, prioridade) values ('compras', 'fazer compras', '2', '10');
