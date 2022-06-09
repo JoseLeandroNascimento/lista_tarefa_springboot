@@ -11,5 +11,7 @@ public interface CRUDService <T>{
     public T save(T object);
 
     public void delete(Long id);
+
+    public List<T> findByAll(String termo);
     
 }

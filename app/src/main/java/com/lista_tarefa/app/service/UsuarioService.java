@@ -42,5 +42,11 @@ public class UsuarioService implements CRUDService<Usuario>{
 
         this.usuarioRepository.deleteById(id);
     }
+
+    @Override
+    public List<Usuario> findByAll(String termo) {
+        
+        return this.usuarioRepository.findByAll(termo);
+    }
     
 }

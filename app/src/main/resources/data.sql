@@ -5,7 +5,8 @@ CREATE TABLE usuario (
     id int PRIMARY KEY AUTO_INCREMENT NOT NULL,
     nome varchar(100) NOT NULL,
     usuario varchar(100) NOT NULL,
-    senha varchar(10) NOT NULL
+    senha varchar(10) NOT NULL,
+    email varchar(100) NOT NULL
 
 );
 

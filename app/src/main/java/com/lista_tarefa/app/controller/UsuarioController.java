@@ -50,9 +50,12 @@ public class UsuarioController implements CRUDController<Usuario>{
     }
 
     @Override
-    public ResponseEntity<List<Usuario>> getByAll(String termoBusca) {
-        // TODO Auto-generated method stub
-        return null;
+    @GetMapping("/filtrar/{termoBusca}")
+    public ResponseEntity<List<Usuario>> getByAll(@PathVariable("termoBusca") String termoBusca) {
+        
+        List<Usuario> registros = this.usuarioService.findByAll(termoBusca);
+
+        return new ResponseEntity<>(registros,HttpStatus.OK);
     }
 
     @Override
