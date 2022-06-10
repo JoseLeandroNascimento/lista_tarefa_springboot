@@ -44,9 +44,9 @@ public class UsuarioService implements CRUDService<Usuario>{
     }
 
     @Override
-    public List<Usuario> findByAll(String termo) {
+    public List<Usuario> findByAll(String termoBusca) {
         
-        return this.usuarioRepository.findByAll(termo);
+        return this.usuarioRepository.findByAll(termoBusca);
     }
     
 }
