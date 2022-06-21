@@ -46,6 +46,11 @@ public class UsuarioController implements CRUDController<Usuario>{
         
         Usuario registro = this.usuarioService.getById(id);
 
+        if(registro == null){
+
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        
         return new ResponseEntity<>(registro,HttpStatus.OK);
     }
 

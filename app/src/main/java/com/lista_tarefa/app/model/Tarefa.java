@@ -1,27 +1,45 @@
 package com.lista_tarefa.app.model;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
+import javax.validation.constraints.NotEmpty;
+
+
 
 @Entity
+@Table(uniqueConstraints = {
+    @UniqueConstraint(columnNames = {"titulo"})
+})
 public class Tarefa {
     
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
 
-    @Column(unique = true)
+    @NotEmpty(message="O campo título não pode ser vazio")
     private String titulo;
 
     private String descricao;
 
     private int status_tarefa;
 
-    @Column(nullable = false)
-    private Long usuario_id;
+    @ManyToOne(optional = false)
+    @JoinColumn(name="usuario_id")
+    private Usuario usuario;
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
 
     private int prioridade;
 
@@ -57,13 +75,7 @@ public class Tarefa {
         this.status_tarefa = status_tarefa;
     }
 
-    public Long getUsuario_id() {
-        return usuario_id;
-    }
-
-    public void setUsuario_id(Long usuario_id) {
-        this.usuario_id = usuario_id;
-    }
+    
 
     public int getPrioridade() {
         return prioridade;

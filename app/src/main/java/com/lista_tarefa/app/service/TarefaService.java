@@ -2,10 +2,10 @@ package com.lista_tarefa.app.service;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.lista_tarefa.app.model.Tarefa;
+import com.lista_tarefa.app.model.Usuario;
 import com.lista_tarefa.app.repository.TarefaRepository;
 
 @Service
@@ -13,7 +13,7 @@ public class TarefaService implements CRUDService<Tarefa>{
 
     private TarefaRepository tarefaRepository;
 
-    @Autowired
+
     public TarefaService(TarefaRepository tarefaRepository){
 
         this.tarefaRepository = tarefaRepository;
@@ -40,14 +40,18 @@ public class TarefaService implements CRUDService<Tarefa>{
     @Override
     public void delete(Long id) {
         
-        this.tarefaRepository.deleteById(id);
+        this.tarefaRepository.deleteById( id);
         
     }
 
     @Override
     public List<Tarefa> findByAll(String termo) {
 
-        return null;
+        return this.tarefaRepository.getTarefasAs(termo);
     }
     
+    public List<Tarefa> findByUsuario(Usuario usuario){
+
+        return this.tarefaRepository.findByUsuario(usuario);
+    }
 }
